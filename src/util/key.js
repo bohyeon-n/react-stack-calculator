@@ -21,7 +21,7 @@ export const keys = [
   },
   {
     name: '2',
-    display: '1'
+    display: '2'
   },
   {
     name: '3',
