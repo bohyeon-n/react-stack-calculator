@@ -1,15 +1,30 @@
 export const calculate = expression => {}
 
-const operationOrder = {
-  '+': 2,
-  '-': 2,
-  '/': 3,
-  '*': 3,
-  '(': 1,
-  ')': 1
+export const splitedExpression = expression => {
+  let preValue = null
+  const splitedExpression = []
+  expression.split('').forEach(value => {
+    if (value === '.' || preValue === '.') {
+      splitedExpression[splitedExpression.length - 1] += value
+    } else {
+      splitedExpression.push(value)
+    }
+    preValue = value
+  })
+
+  return splitedExpression
 }
 
 export const toPostfix = expression => {
+  const operationOrder = {
+    '+': 2,
+    '-': 2,
+    '/': 3,
+    '*': 3,
+    '(': 1,
+    ')': 1
+  }
+
   const stack = []
   const result = []
 
