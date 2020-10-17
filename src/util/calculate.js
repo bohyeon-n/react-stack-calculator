@@ -6,7 +6,11 @@ export const splitedExpression = expression => {
   let preValue = null
   const splitedExpression = []
   expression.split('').forEach(value => {
-    if (value === '.' || preValue === '.') {
+    if (
+      value === '.' ||
+      preValue === '.' ||
+      (!isNaN(Number(value)) && preValue !== null && !isNaN(Number(preValue)))
+    ) {
       splitedExpression[splitedExpression.length - 1] += value
     } else {
       splitedExpression.push(value)
@@ -73,21 +77,27 @@ export const calcPostfix = expression => {
   const stack = []
 
   for (let i = 0; i < expression.length; i++) {
+    let n1
+    let n2
     switch (expression[i]) {
       case '+':
-        stack.push(stack.pop() + stack.pop())
+        stack.push(parseFloat((stack.pop() + stack.pop()).toFixed()))
         break
       case '-':
-        stack.push(stack.pop() - stack.pop())
+        n1 = stack.pop()
+        n2 = stack.pop()
+        stack.push(parseFloat((n2 - n1).toFixed(2)))
         break
       case '*':
-        stack.push(stack.pop() * stack.pop())
+        stack.push(parseFloat((stack.pop() * stack.pop()).toFixed(2)))
         break
       case '/':
-        stack.push(stack.pop() / stack.pop())
+        n1 = stack.pop()
+        n2 = stack.pop()
+        stack.push(parseFloat((n2 / n1).toFixed(2)))
         break
       default:
-        stack.push(Number(expression[i]))
+        stack.push(parseFloat(expression[i]))
     }
   }
 
