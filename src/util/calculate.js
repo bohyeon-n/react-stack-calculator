@@ -51,3 +51,28 @@ export const toPostfix = expression => {
   }
   return [...result, ...stack]
 }
+
+export const calcPostfix = expression => {
+  const stack = []
+
+  for (let i = 0; i < expression.length; i++) {
+    switch (expression[i]) {
+      case '+':
+        stack.push(stack.pop() + stack.pop())
+        break
+      case '-':
+        stack.push(stack.pop() - stack.pop())
+        break
+      case '*':
+        stack.push(stack.pop() * stack.pop())
+        break
+      case '/':
+        stack.push(stack.pop() / stack.pop())
+        break
+      default:
+        stack.push(Number(expression[i]))
+    }
+  }
+
+  return stack.pop()
+}
