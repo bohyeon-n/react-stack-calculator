@@ -1,4 +1,6 @@
-export const calculate = expression => {}
+export const calculate = expression => {
+  return calcPostfix(toPostfix(splitedExpression(expression)))
+}
 
 export const splitedExpression = expression => {
   let preValue = null
