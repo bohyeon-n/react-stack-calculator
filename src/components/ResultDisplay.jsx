@@ -12,5 +12,5 @@ const Display = styled.div`
 `
 
 export const ResultDisplay = ({ result }) => {
-  return <Display>{result}</Display>
+  return <Display data-testid="result">{result}</Display>
 }
