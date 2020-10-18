@@ -1,9 +1,11 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from 'react'
+import { cleanup, render } from '@testing-library/react'
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+import App from './App'
+
+afterEach(cleanup)
+
+it('App.js: 계산기가 노출된다.', () => {
+  const { queryByText } = render(<App />)
+  expect(queryByText('계산기')).toBeInTheDocument()
+})
